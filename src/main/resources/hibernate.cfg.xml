@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- START - SQL Server Connection Properties -->
+        <!-- SQL Server - Database Specific Property Details - Need to Change according to
+        Database Vendor -->
+        <property name="hibernate.dialect">org.hibernate.spatial.dialect.mysql.MySQL56SpatialDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://18.219.52.254:3306/TCU?useSSL=false</property>
+        <property name="hibernate.connection.username">admin</property>
+        <property name="hibernate.connection.password">tcu12345678</property>
+        <!-- Isolation level: READ COMMITTED -->
+        <property name="hibernate.connection.isolation">2</property>
+        <!-- END - SQL Server Connection Properties -->
+
+        <!-- Config for Showing SQL to Console if true specified -->
+        <property name="hibernate.show_sql">true</property>
+
+        <!-- By Default this Property is set to False if you don't declare this
+        Property. If it set to True than you don't need to Commit the Transaction
+        into Database. Hibernate implicitly take care of commiting Records into Database
+        after Each Session Transaction and if it is set to False than you need to
+        commit the Transaction explicitly. e.g. session.getTransaction().commit(); -->
+        <property name="hibernate.connection.autocommit">false</property>
+
+        <property name="hibernate.current_session_context_class">thread</property>
+
+        <!-- c3p0 -->
+        <property name="hibernate.c3p0.acquire_increment">1</property>
+        <property name="hibernate.c3p0.idle_test_period">300</property>
+        <property name="hibernate.c3p0.timeout">600</property>
+        <property name="hibernate.c3p0.max_size">25</property>
+        <property name="hibernate.c3p0.min_size">1</property>
+        <property name="hibernate.c3p0.max_statement">0</property>
+        <property name="hibernate.c3p0.acquireRetryAttempts">1</property>
+        <property name="hibernate.c3p0.acquireRetryDelay">250</property>
+
+        <!-- Mappings for annotated classes. -->
+        <!-- This is done, so that Hibernate can auto complete our code. -->
+        <mapping class="application.model.EventType"/>
+        <mapping class="application.model.Event"/>
+        <mapping class="application.model.EventPicture"/>
+
+    </session-factory>
+</hibernate-configuration>
